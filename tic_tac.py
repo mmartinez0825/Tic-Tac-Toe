@@ -21,25 +21,31 @@ def main():
     print("Welcome to Tic Tac Toe!\n")
     print("In this game, two players take turns to place their marks (X or O) on a 3x3 grid.\n")
     print("The goal is to be the first to get three of their marks in a row, column, or diagonal.\n")
+
+    # Get players' names
+    player1_name = input("Enter name for Player 1: ")
+    player2_name = input("Enter name for Player 2: ")
+
     print("Let's get started!\n")
-    
+
     board = [[" " for _ in range(3)] for _ in range(3)]
-    players = ["1", "2"]
+    players = [player1_name, player2_name]
+    marks = ["X", "O"]
     current_player = 0
 
     print_board(board)
 
     while True:
-        row = int(input(f"Player {players[current_player]}, enter row (up-down, 0-2): "))
-        col = int(input(f"Player {players[current_player]}, enter column (left-right, 0-2): "))
+        row = int(input(f"{players[current_player]}, enter row (up-down, 0-2): "))
+        col = int(input(f"{players[current_player]}, enter column (left-right, 0-2): "))
         
         if 0 <= row < 3 and 0 <= col < 3:
             if board[row][col] == " ":
-                board[row][col] = players[current_player]
+                board[row][col] = marks[current_player]
                 print_board(board)
 
-                if check_winner(board, players[current_player]):
-                    print(f"Player {players[current_player]} wins!")
+                if check_winner(board, marks[current_player]):
+                    print(f"{players[current_player]} wins!")
                     break
                 elif is_full(board):
                     print("It's a draw!")
